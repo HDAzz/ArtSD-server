@@ -31,7 +31,5 @@ def img2img(picture_path, style):
     r = response.json()
     image = Image.open(io.BytesIO(base64.b64decode(r['images'][0])))
 
-    image.show()
-    # image.save('./static/' + picture_path.split('/')[-1])
 
     return io.BytesIO(base64.b64decode(r['images'][0]))

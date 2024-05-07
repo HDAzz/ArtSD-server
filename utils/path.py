@@ -11,4 +11,5 @@ def get_object_name(file_name):
     # 确保月份和日期的格式为两位数，例如 '01'、'02' 等
     month = month.zfill(2)
     day = day.zfill(2)
-    return os.path.join(year, month, day, uuid.uuid4().hex+file_name)
+    # return os.path.join(year, month, day, uuid.uuid4().hex+file_name)
+    return f'{year}/{month}/{day}/{uuid.uuid4().hex}/{file_name}'
