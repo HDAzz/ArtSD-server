@@ -1,10 +1,13 @@
 import base64
+import configparser
+import os
 import uuid
 from flask import Flask, request, send_from_directory,send_file
 from utils.img2img import img2img
 from db import db
 from service.OssService import upload_file,get_file
-
+config = configparser.ConfigParser()
+config.read('config.ini')
 app = Flask(__name__)
 
 @app.route('/generate',methods=['POST'])
@@ -58,4 +61,7 @@ def static_file(filename):
 def minio(url):
     # return base64.b64encode(get_file(url)).decode('utf-8')
     return send_file(get_file(url), mimetype='image/jpg')
-app.run(port=8080, debug=True)
+
+
+if __name__ == '__main__':
+    app.run(port=int(config['flask']['port']), debug=True)
