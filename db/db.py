@@ -56,7 +56,7 @@ def getHistory():
         historylist.append({"id":ObjectId(i['_id']).__str__(),
                             "raw_url":i["raw_url"],
                             "processed_url":i['processed_url'],
-                            "style":style})
+                            "static":style})
     return historylist
 '''
 获取风格列表
@@ -73,8 +73,9 @@ def getStyle():
 def addStyle(name,payload,path):
     query = {"name": name}
     result = collection_style.find_one(query)
+    print(result)
     if result == None:
-        style_id = collection_style.insert_one({
+        collection_style.insert_one({
             "name": name,
             "created_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
             "updated_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
@@ -83,10 +84,14 @@ def addStyle(name,payload,path):
         })
     else:
         new_value = {"$set": {"payload": payload, "updated_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}}
-        collection_picture.update_one(query, new_value)
-        style_id = collection_style.find_one({"name":name})["styleid"]
-    return ObjectId(style_id.inserted_id).__str__()
+        collection_style.update_one(query, new_value)
+    style_id = collection_style.find_one({"name": name})["_id"]
+    return ObjectId(style_id).__str__()
 def getStylePromp(styleid):
     query = { "_id": ObjectId(styleid) }
     result = collection_style.find_one(query)
     return result['name']
+def getPayload(name):
+    query = {"name": name}
+    result = collection_style.find_one(query)
+    return result['payload']

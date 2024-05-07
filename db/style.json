@@ -1,20 +1,42 @@
 [
   {
-    "_id": {"$oid": "6624902d3423eac68e504e09"},
-    "created_at": "2024-04-21 12:03:57",
-    "name": "illustration",
-    "static_path": "/style/7b364a07620b4186b6e88f9779457239demo.jpg"
-  },
-  {
-    "_id": {"$oid": "662490593423eac68e504e0a"},
-    "created_at": "2024-04-21 12:04:41",
+    "_id": {"$oid": "663a0bc2af74e609409eac8b"},
+    "created_at": "2024-05-07 19:08:50",
     "name": "anime",
-    "static_path": "/style/ac2699aaaf1b436783915ce46eae2485demo.jpg"
+    "payload": "{'override_settings': {'sd_model_checkpoint': 'manmaruMix_v30'}, 'prompt': '(best quality:1.2),looking at viewer,masterpiece,full of youthful energy,professional,bright,live and beautiful eyes', 'negative_prompt': 'NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality,blurry, ((monochrome)), ((grayscale)),skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331),(morbid:1.21), (mutilated:1.21), (tranny: 1.331), mutated hands,(poorly drawn hands: 1.5), (bad anatomy: 1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missingarms:1.331), (extra legs: 1.331), (fused fingers: 1.61051), (too many fingers: 1.61051), (easynegative:1.2), (unclear eyes: 1.331),(strange eyes:1.3),bad hands, missing fingers, extra digit, (((extraarms and legs)))', 'steps': 30, 'sampler_name': 'Euler a', 'width': 480, 'height': 640, 'batch_size': 1, 'n_iter': 1, 'seed': -1, 'cfg_scale': 8, 'denoising_strength': 0.25, 'CLIP_stop_at_last_layers': 2, 'init_images': [], 'restore_faces': False}",
+    "static_path": "/static/anime.jpg",
+    "updated_at": "2024-05-07 19:08:50"
   },
   {
-    "_id": {"$oid": "6624908e3423eac68e504e0b"},
-    "created_at": "2024-04-21 12:05:34",
+    "_id": {"$oid": "663a0c01af74e609409eac8c"},
+    "created_at": "2024-05-07 19:09:53",
     "name": "picas",
-    "static_path": "/style/c6e0b84a25db4bb0a45608821e344ed3demo.jpg"
+    "payload": "{'override_settings': {'sd_model_checkpoint': 'disneyPixarCartoon_v10'}, 'prompt': 'teenger,(best quality:1.2),cute,looking at viewer,masterpiece,delicate face,full of youthful energy,professional,vivid colors,bright,live and beautiful eyes', 'negative_prompt': 'NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality,blurry, ((monochrome)), ((grayscale)),skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331),(morbid:1.21), (mutilated:1.21), (tranny: 1.331), mutated hands,(poorly drawn hands: 1.5), (bad anatomy: 1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missingarms:1.331), (extra legs: 1.331), (fused fingers: 1.61051), (too many fingers: 1.61051), (easynegative:1.2), (unclear eyes: 1.331),(strange eyes:1.3),bad hands, missing fingers, extra digit, (((extraarms and legs)))', 'steps': 30, 'sampler_name': 'Euler a', 'width': 480, 'height': 640, 'batch_size': 1, 'n_iter': 1, 'seed': -1, 'cfg_scale': 6.5, 'denoising_strength': 0.3, 'CLIP_stop_at_last_layers': 2, 'init_images': [], 'restore_faces': False}",
+    "static_path": "/static/picas.jpg",
+    "updated_at": "2024-05-07 19:09:53"
+  },
+  {
+    "_id": {"$oid": "663a0c78af74e609409eac8d"},
+    "created_at": "2024-05-07 19:11:52",
+    "name": "illustration",
+    "payload": "{'override_settings': {'sd_model_checkpoint': 'pixelstyleckpt_strength07'}, 'prompt': '(teenger:1.5),(best quality:1.2),looking at viewer,masterpiece,full of youthful energy,professional,bright', 'negative_prompt': 'NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres,(beard:1.2),elder,old, normal quality,blurry, ((monochrome)), ((grayscale)),skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331),(morbid:1.21), (mutilated:1.21), (tranny: 1.331), mutated hands,(beard:1.2),(poorly drawn hands: 1.5), (bad anatomy: 1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missingarms:1.331), (extra legs: 1.331), (fused fingers: 1.61051), (too many fingers: 1.61051), (easynegative:1.2), (unclear eyes: 1.331),(strange eyes:1.3),bad hands, missing fingers, extra digit, (((extraarms and legs)))', 'steps': 30, 'sampler_name': 'Euler a', 'width': 480, 'height': 640, 'batch_size': 1, 'n_iter': 1, 'seed': -1, 'cfg_scale': 7.5, 'denoising_strength': 0.4, 'CLIP_stop_at_last_layers': 2, 'init_images': [], 'restore_faces': False}",
+    "static_path": "/static/illustration.jpg",
+    "updated_at": "2024-05-07 19:19:39"
+  },
+  {
+    "_id": {"$oid": "663a1039ffd57e84cad2a714"},
+    "created_at": "2024-05-07 19:27:53",
+    "name": "oilPrinting",
+    "payload": "{'override_settings': {'sd_model_checkpoint': 'aniverse_v30Pruned'}, 'prompt': '(teenger:1.5),(best quality:1.2),looking at viewer,masterpiece,full of youthful energy,professional,bright', 'negative_prompt': 'NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres,(beard:1.2),elder,old, normal quality,blurry, ((monochrome)), ((grayscale)),skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331),(morbid:1.21), (mutilated:1.21), (tranny: 1.331), mutated hands,(beard:1.2),(poorly drawn hands: 1.5), (bad anatomy: 1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missingarms:1.331), (extra legs: 1.331), (fused fingers: 1.61051), (too many fingers: 1.61051), (easynegative:1.2), (unclear eyes: 1.331),(strange eyes:1.3),bad hands, missing fingers, extra digit, (((extraarms and legs)))', 'steps': 30, 'sampler_name': 'Euler a', 'width': 480, 'height': 640, 'batch_size': 1, 'n_iter': 1, 'seed': -1, 'cfg_scale': 8, 'denoising_strength': 0.2, 'CLIP_stop_at_last_layers': 2, 'init_images': [], 'restore_faces': False}",
+    "static_path": "/static/oilPrinting.jpg",
+    "updated_at": "2024-05-07 19:27:53"
+  },
+  {
+    "_id": {"$oid": "663a10a6a6060cc90d600cff"},
+    "created_at": "2024-05-07 19:29:42",
+    "name": "relCartoon",
+    "payload": "{'override_settings': {'sd_model_checkpoint': 'animics_v12'}, 'prompt': '(teenger:1.5),(best quality:1.2),looking at viewer,masterpiece,full of youthful energy,professional,bright', 'negative_prompt': 'NSFW, (worst quality:2), (low quality:2), (normal quality:2), lowres,(beard:1.2),elder,old, normal quality,blurry, ((monochrome)), ((grayscale)),skin spots, acnes, skin blemishes, age spot, (ugly:1.331), (duplicate:1.331),(morbid:1.21), (mutilated:1.21), (tranny: 1.331), mutated hands,(beard:1.2),(poorly drawn hands: 1.5), (bad anatomy: 1.21), (bad proportions:1.331), extra limbs, (disfigured:1.331), (missingarms:1.331), (extra legs: 1.331), (fused fingers: 1.61051), (too many fingers: 1.61051), (easynegative:1.2), (unclear eyes: 1.331),(strange eyes:1.3),bad hands, missing fingers, extra digit, (((extraarms and legs)))', 'steps': 30, 'sampler_name': 'Euler a', 'width': 480, 'height': 640, 'batch_size': 1, 'n_iter': 1, 'seed': -1, 'cfg_scale': 8, 'denoising_strength': 0.35, 'CLIP_stop_at_last_layers': 2, 'init_images': [], 'restore_faces': False}",
+    "static_path": "/static/relCartoon.jpg",
+    "updated_at": "2024-05-07 19:29:42"
   }
 ]
