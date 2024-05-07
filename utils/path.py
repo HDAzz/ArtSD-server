@@ -12,4 +12,4 @@ def get_object_name(file_name):
     month = month.zfill(2)
     day = day.zfill(2)
     # return os.path.join(year, month, day, uuid.uuid4().hex+file_name)
-    return f'{year}/{month}/{day}/{uuid.uuid4().hex}/{file_name}'
+    return f'{year}/{month}/{day}/{uuid.uuid4().hex}{file_name}'
