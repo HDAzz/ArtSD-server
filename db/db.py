@@ -14,16 +14,17 @@ collection_style=db.get_database().get_collection('style')
 '''
 新增图片
 '''
-def insertPictures(filename,static_url,styleid):
+def insertPictures(filename,raw_url,processed_url,styleid):
     inserted_id = collection_picture.insert_one({
         "filename":filename,
-        "static_url":static_url,
+        "raw_url":raw_url,
+        "processed_url":processed_url,
         "styleid":styleid,
         "created_at":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) ,
         "updated_at":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) ,
         "isDeleted":True
     })
-    return {"id":ObjectId(inserted_id.inserted_id).__str__(),"static_url":static_url}
+    return {"id":ObjectId(inserted_id.inserted_id).__str__(),"processed_url":processed_url}
 '''
 保存图片
 '''

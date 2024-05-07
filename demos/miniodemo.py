@@ -1,19 +1,21 @@
+import configparser
 from minio import Minio
-
 import  io
-BUCKET_NAME = 'artsd'
-# 初始化minioClient, 提供访问地址， 访问账号与密码
-minioClient = Minio('127.0.0.1:9000',
-                    access_key='minioadmin',
-                    secret_key='minioadmin',
+config = configparser.ConfigParser()
+config.read('../config.ini')
+
+BUCKET_NAME = config['minio']['bucket_name']
+minioClient = Minio(config['minio']['host']+':'+config['minio']['port'],
+                    config['minio']['access_key'],
+                    config['minio']['secret_key'],
                     secure=False)
 # bucket不存时创建
 found = minioClient.bucket_exists(BUCKET_NAME)
 if not found:
     minioClient.make_bucket(BUCKET_NAME)
-    print('created bucket')
+    print('created bucket '+BUCKET_NAME)
 else:
-    print('bucket exists')
+    print('bucket '+BUCKET_NAME+' exists')
 # 创建文件， 直接提供内容。 若从文件路径上传，使用fput_object
 name = u'art-001'
 content = u'this the content body'
