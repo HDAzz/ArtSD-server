@@ -30,17 +30,4 @@ def upload_file(file_name,image_data,type):
 
     return object_name
 def get_file(file_url):
-     return minioClient.get_object(BUCKET_NAME, file_url).read()
-# name = u'art-001'
-# content = u'this the content body'
-# put_result = minioClient.put_object(BUCKET_NAME, name, io.BytesIO(content.encode()), len(content), 'text/plain')
-# print(put_result)
-#
-# # 读取内容
-# try:
-#     get_response = minioClient.get_object(BUCKET_NAME, name)
-#     #print(get_response.getheaders())
-#     print(get_response.read())
-# finally:
-#     get_response.close()
-#     get_response.release_conn()
+     return minioClient.get_object(BUCKET_NAME, file_url)
