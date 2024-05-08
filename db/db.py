@@ -65,10 +65,10 @@ def getStyle():
     stylelist=[]
     result = collection_style.find()
     for i in result:
-        name = i['name']
+        nickname = i['nickname']
         styleid = ObjectId(i['_id']).__str__()
         path = i['static_path']
-        stylelist.append({'name':name,'styleid':styleid,'path':path})
+        stylelist.append({'nickname':nickname,'styleid':styleid,'path':path})
     return stylelist
 def addStyle(name,payload,path):
     query = {"name": name}
