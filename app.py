@@ -64,4 +64,4 @@ def minio(url):
 
 
 if __name__ == '__main__':
-    app.run(port=int(config['flask']['port']), debug=True)
+    app.run(host=config['flask']['host'],port=int(config['flask']['port']), debug=True)
