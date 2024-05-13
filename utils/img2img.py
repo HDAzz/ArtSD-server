@@ -14,7 +14,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 host = config['stable-diffusion-webui']['host']
 port = config['stable-diffusion-webui']['port']
-def img2img(picture_path, style):
+def img2img(picture_path, style,background):
     url = "http://"+host+":"+port
     data = get_file(picture_path).read()
     image = np.frombuffer(data, dtype=np.uint8)
@@ -29,7 +29,16 @@ def img2img(picture_path, style):
 
     response = requests.post(url=f'{url}/sdapi/v1/img2img', json=payload)
     r = response.json()
-    image = Image.open(io.BytesIO(base64.b64decode(r['images'][0])))
-
-
-    return io.BytesIO(base64.b64decode(r['images'][0]))
+    if(background):
+        temp_img = r['images'][0]
+        conf={
+            'input_image':temp_img,
+            'model':'u2net',
+        }
+        temp_response = requests.post(url=f'{url}/rembg',json=conf)
+        temp_r = temp_response.json()
+        image = Image.open(io.BytesIO(base64.b64decode(temp_r['image'])))
+        return io.BytesIO(base64.b64decode(temp_r['image']))
+    else:
+        image = Image.open(io.BytesIO(base64.b64decode(r['images'][0])))
+        return io.BytesIO(base64.b64decode(r['images'][0]))
