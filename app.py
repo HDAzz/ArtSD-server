@@ -13,9 +13,14 @@ CORS(app)
 
 @app.before_request
 def before():
-    sn = request.headers.get('Sn')
-    if sn is None or db.checkDevice(sn) is False:
-        return error('40000','Sn is not exist')
+    url = request.path
+    passUrl = ['/history']
+    if url in passUrl:
+        pass
+    else:
+        sn = request.headers.get('Sn')
+        if sn is None or db.checkDevice(sn) is False:
+            return error('40000', 'Sn is not exist')
 @app.route('/generate',methods=['POST'])
 def generate_img():
     sn = request.headers.get('Sn')
