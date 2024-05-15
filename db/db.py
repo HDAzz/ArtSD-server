@@ -98,7 +98,7 @@ def getPayload(name):
     result = collection_style.find_one(query)
     return result['payload']
 def checkDevice(sn):
-    device = collection_device.find_one({'sn': sn})
+    device = collection_device.find_one({'Sn': sn})
     if not device:
         return False
     return True
