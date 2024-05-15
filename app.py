@@ -5,6 +5,7 @@ from utils.response import success,error
 from db import db
 from service.OssService import upload_file,get_file
 from flask_cors import CORS
+import re
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -15,9 +16,10 @@ CORS(app)
 def before():
     url = request.path
     passUrl = []
+    pattern = r'^/static/.+'
     if url in passUrl:
         pass
-    elif request.endpoint and 'static' in request.endpoint:
+    elif re.match(pattern, url):
         # 如果是请求静态文件的路由，则不进行拦截
         pass
     else:
