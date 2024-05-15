@@ -11,10 +11,11 @@ uri = config['mongodb']['ConnectionString']
 db = pymongo.MongoClient(uri)
 collection_picture=db.get_database().get_collection('picture')
 collection_style=db.get_database().get_collection('style')
+collection_device=db.get_database().get_collection('device')
 '''
 新增图片
 '''
-def insertPictures(filename,raw_url,processed_url,styleid):
+def insertPictures(filename,raw_url,processed_url,styleid,sn):
     inserted_id = collection_picture.insert_one({
         "filename":filename,
         "raw_url":raw_url,
@@ -22,7 +23,8 @@ def insertPictures(filename,raw_url,processed_url,styleid):
         "styleid":styleid,
         "created_at":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) ,
         "updated_at":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) ,
-        "isDeleted":True
+        "isDeleted":True,
+        "sn":sn
     })
     return {"id":ObjectId(inserted_id.inserted_id).__str__(),"processed_url":processed_url}
 '''
@@ -44,9 +46,9 @@ def deletePicture(inserted_id):
 '''
 获取历史列表
 '''
-def getHistory():
+def getHistory(sn):
     historylist = []
-    query = { "isDeleted": False }
+    query = { "isDeleted": False,"sn":sn }
     result = collection_picture.find(query).sort("created_at", pymongo.DESCENDING)
     for i in result:
         styleid = i["styleid"]
@@ -95,3 +97,8 @@ def getPayload(name):
     query = {"name": name}
     result = collection_style.find_one(query)
     return result['payload']
+def checkDevice(sn):
+    device = collection_device.find_one({'sn': sn})
+    if not device:
+        return False
+    return True
