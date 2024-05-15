@@ -14,8 +14,11 @@ CORS(app)
 @app.before_request
 def before():
     url = request.path
-    passUrl = ['/history']
+    passUrl = []
     if url in passUrl:
+        pass
+    elif request.endpoint and 'static' in request.endpoint:
+        # 如果是请求静态文件的路由，则不进行拦截
         pass
     else:
         sn = request.headers.get('Sn')
