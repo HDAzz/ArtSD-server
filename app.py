@@ -16,7 +16,7 @@ CORS(app)
 def before():
     url = request.path
     passUrl = []
-    pattern = r'^/static/.+'
+    pattern = r'^/minio/.+'
     if url in passUrl:
         pass
     elif re.match(pattern, url):
