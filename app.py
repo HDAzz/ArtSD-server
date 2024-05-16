@@ -52,7 +52,8 @@ def stylelist():
 # 获取历史列表
 @app.route('/history',methods=['GET'])
 def history():
-    pathlist = db.getHistory()
+    sn = request.headers.get('Sn')
+    pathlist = db.getHistory(sn)
     return success(pathlist)
 # 保存图片
 @app.route('/save',methods=['POST'])
