@@ -78,6 +78,7 @@ def static_file(filename):
     return send_from_directory(app.config['STATIC_FOLDER'], filename, cache_timeout=0)
 @app.route('/minio/<path:url>')
 def minio(url):
-    return send_file(get_file(url), mimetype='image/jpg')
+    sex = request.form.get('sex')
+    return send_file(get_file(f'/{url}',sex), mimetype='image/jpg')
 if __name__ == '__main__':
     app.run(host=config['flask']['host'],port=int(config['flask']['port']), debug=True)
