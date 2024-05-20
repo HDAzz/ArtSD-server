@@ -5,6 +5,7 @@ from utils.response import success,error
 from db import db
 from service.OssService import upload_file,get_file
 from flask_cors import CORS
+from utils.gender_recognition import gender_recognition
 import re
 
 config = configparser.ConfigParser()
@@ -15,7 +16,7 @@ CORS(app)
 @app.before_request
 def before():
     url = request.path
-    passUrl = []
+    passUrl = ['/sex']
     pattern = r'^/minio/.+'
     if url in passUrl:
         pass
@@ -36,7 +37,7 @@ def generate_img():
     styleid = request.form.get('style')
 
     background = True if (request.form.get('background')=='true' or request.form.get('background')=='True')else False
-    print(background)
+    # print(background)
     styleprompt = db.getStylePromp(styleid)
     new_img_data_b = img2img(raw_url,styleprompt,background)
     processed_url = upload_file(img.filename,
@@ -44,6 +45,11 @@ def generate_img():
                                 type='productions')# '/productions/xx/xx/xx/xxxx.jpg'
     data= db.insertPictures(img.filename, raw_url,processed_url, styleid,sn)
     return success(data)
+@app.route('/sex',methods=['POST'])
+def get_sex():
+    img = request.files['img']
+    gender = gender_recognition(img)
+    return success(gender)
 # 获取风格列表
 @app.route('/stylelist',methods=['GET'])
 def stylelist():
