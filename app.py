@@ -86,6 +86,6 @@ def static_file(filename):
 @app.route('/minio/<path:url>')
 def minio(url):
 
-    return send_file(get_file(f'/{url}'), mimetype='image/jpg')
+    return send_file(get_file(url), mimetype='image/jpg')
 if __name__ == '__main__':
     app.run(host=config['flask']['host'],port=int(config['flask']['port']), debug=True)

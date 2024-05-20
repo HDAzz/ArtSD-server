@@ -29,7 +29,6 @@ def upload_file(file_name,image_data,type):
                            part_size=10*1024*1024)
 
     return object_name
-def get_file(file_url,sex):
-
+def get_file(file_url):
     # print(file_url)
     return minioClient.get_object(BUCKET_NAME, file_url)
