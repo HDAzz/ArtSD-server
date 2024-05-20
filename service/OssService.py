@@ -30,7 +30,6 @@ def upload_file(file_name,image_data,type):
 
     return object_name
 def get_file(file_url,sex):
-    sex_dict = {"0":'man',
-                "1":'woman'}
-    print(file_url)
-    return minioClient.get_object(BUCKET_NAME, f"/{file_url.split('/')[1]}/{sex_dict[sex]}/{file_url.split('/')[2]}")
+
+    # print(file_url)
+    return minioClient.get_object(BUCKET_NAME, file_url)

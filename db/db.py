@@ -63,14 +63,17 @@ def getHistory(sn):
 '''
 获取风格列表
 '''
-def getStyle():
+def getStyle(sex):
+    sex_dict = {"0":'man',
+                "1":'woman'}
+
     stylelist=[]
     result = collection_style.find()
     for i in result:
         nickname = i['nickname']
         styleid = ObjectId(i['_id']).__str__()
         path = i['static_path']
-        stylelist.append({'nickname':nickname,'styleid':styleid,'path':path})
+        stylelist.append({'nickname':nickname,'styleid':styleid,'path':f"/{path.split('/')[1]}/{sex_dict[sex]}/{path.split('/')[2]}"})
     return stylelist
 def addStyle(name,payload,path):
     query = {"name": name}

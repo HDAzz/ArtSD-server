@@ -51,9 +51,10 @@ def get_sex():
     gender = gender_recognition(img)
     return success(gender)
 # 获取风格列表
-@app.route('/stylelist',methods=['GET'])
+@app.route('/stylelist',methods=['POST'])
 def stylelist():
-    stylelist = db.getStyle()
+    sex = request.form.get('sex')
+    stylelist = db.getStyle(sex)
     return success(stylelist)
 # 获取历史列表
 @app.route('/history',methods=['GET'])
@@ -84,7 +85,7 @@ def static_file(filename):
     return send_from_directory(app.config['STATIC_FOLDER'], filename, cache_timeout=0)
 @app.route('/minio/<path:url>')
 def minio(url):
-    sex = request.form.get('sex')
-    return send_file(get_file(f'/{url}',sex), mimetype='image/jpg')
+
+    return send_file(get_file(f'/{url}'), mimetype='image/jpg')
 if __name__ == '__main__':
     app.run(host=config['flask']['host'],port=int(config['flask']['port']), debug=True)
