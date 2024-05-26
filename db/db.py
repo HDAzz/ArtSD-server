@@ -15,14 +15,15 @@ collection_device=db.get_database().get_collection('device')
 '''
 新增图片
 '''
-def insertPictures(filename,raw_url,processed_url,styleid,sn):
+def insertPictures(filename,raw_url,processed_url,styleid,sn,calling_at,begin_at,end_at):
     inserted_id = collection_picture.insert_one({
         "filename":filename,
         "raw_url":raw_url,
         "processed_url":processed_url,
         "styleid":styleid,
-        "created_at":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) ,
-        "updated_at":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) ,
+        "calling_at":calling_at,
+        "begin_at":begin_at,
+        "end_at":end_at,
         "isDeleted":True,
         "sn":sn
     })
@@ -103,5 +104,7 @@ def getPayload(name):
 def checkDevice(sn):
     device = collection_device.find_one({'Sn': sn})
     if not device:
+        return False
+    elif device['isBanned']==True:
         return False
     return True

@@ -1,4 +1,6 @@
 import configparser
+import time
+
 from flask import Flask, request, send_from_directory,send_file
 from utils.img2img import img2img
 from utils.response import success,error
@@ -15,6 +17,7 @@ CORS(app)
 
 @app.before_request
 def before():
+    # app.logger.info('【请求方法】{}【请求路径】{}【请求设备】{}【请求参数】{}【请求地址】{}'.format(request.method, request.path,request.headers['Sn'],dict(request.form),request.remote_addr))
     url = request.path
     passUrl = ['/sex']
     pattern = r'^/minio/.+'
@@ -26,11 +29,12 @@ def before():
     else:
         sn = request.headers.get('Sn')
         if sn is None or db.checkDevice(sn) is False:
-            return error('40000', 'Sn is not exist')
+            return error('40000', 'Sn is not exist or the device is banned')
 @app.route('/generate',methods=['POST'])
 def generate_img():
-    sn = request.headers.get('Sn')
-    img = request.files['img']
+    calling_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) # 获取接口调用的时间
+    sn = request.headers.get('Sn') # 获取设备号
+    img = request.files['img'] # 获取原始图片
     raw_url = upload_file(img.filename,
                            img,
                            type='uploads') # '/upload/xx/xx/xx/xxxx.jpg'
@@ -39,11 +43,11 @@ def generate_img():
     background = True if (request.form.get('background')=='true' or request.form.get('background')=='True')else False
     # print(background)
     styleprompt = db.getStylePromp(styleid)
-    new_img_data_b = img2img(raw_url,styleprompt,background)
+    new_img_data_b,begin_at,end_at = img2img(raw_url,styleprompt,background)
     processed_url = upload_file(img.filename,
                                 new_img_data_b,
                                 type='productions')# '/productions/xx/xx/xx/xxxx.jpg'
-    data= db.insertPictures(img.filename, raw_url,processed_url, styleid,sn)
+    data= db.insertPictures(img.filename, raw_url,processed_url, styleid,sn,calling_at,begin_at,end_at)
     return success(data)
 @app.route('/sex',methods=['POST'])
 def get_sex():
