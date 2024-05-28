@@ -19,7 +19,7 @@ CORS(app)
 def before():
     # app.logger.info('【请求方法】{}【请求路径】{}【请求设备】{}【请求参数】{}【请求地址】{}'.format(request.method, request.path,request.headers['Sn'],dict(request.form),request.remote_addr))
     url = request.path
-    passUrl = ['/sex']
+    passUrl = ['/sex','/style']
     pattern = r'^/minio/.+'
     if url in passUrl:
         pass
