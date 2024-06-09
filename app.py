@@ -64,8 +64,19 @@ def stylelist():
 @app.route('/history',methods=['GET'])
 def history():
     sn = request.headers.get('Sn')
-    pathlist = db.getHistory(sn)
-    return success(pathlist)
+    # 获取分页参数
+    page = int(request.form.get('page'))
+    page_size = int(request.form.get('page_size'))
+
+
+    pathlist,total_documents,total_pages = db.getHistory(sn,page,page_size)
+    return success({
+        'pathlist':pathlist,
+        'page':page,
+        'page_size':page_size,
+        'total_documents':total_documents,
+        'total_pages':total_pages
+    })
 # 保存图片
 @app.route('/save',methods=['POST'])
 def saveimg():

@@ -45,12 +45,13 @@ def deletePicture(inserted_id):
     print(collection_picture.find_one(query))
     collection_picture.update_one(query, new_value)
 '''
-获取历史列表
+获取历史列表 （分页获取）
 '''
-def getHistory(sn):
+def getHistory(sn,page,page_size):
+    skip = (page - 1) * page_size
     historylist = []
     query = { "isDeleted": False,"sn":sn }
-    result = collection_picture.find(query).sort("created_at", pymongo.DESCENDING)
+    result = collection_picture.find(query).skip(skip).limit(page_size).sort("calling_at", pymongo.DESCENDING)
     for i in result:
         styleid = i["styleid"]
         query = { "_id": ObjectId(styleid) }
@@ -60,7 +61,10 @@ def getHistory(sn):
                             "raw_url":i["raw_url"],
                             "processed_url":i['processed_url'],
                             "static":style})
-    return historylist
+    total_documents=collection_picture.count_documents({ "isDeleted": False,"sn":sn })
+    print(total_documents)
+    total_pages = (total_documents + page_size -1) // page_size
+    return historylist,total_documents,total_pages
 '''
 获取风格列表
 '''
