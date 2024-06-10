@@ -61,7 +61,7 @@ def stylelist():
     stylelist = db.getStyle(sex)
     return success(stylelist)
 # 获取历史列表
-@app.route('/history',methods=['GET'])
+@app.route('/history',methods=['POST'])
 def history():
     sn = request.headers.get('Sn')
     # 获取分页参数
