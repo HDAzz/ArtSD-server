@@ -51,7 +51,7 @@ def getHistory(sn,page,page_size):
     skip = (page - 1) * page_size
     historylist = []
     query = { "isDeleted": False,"sn":sn }
-    result = collection_picture.find(query).skip(skip).limit(page_size).sort("calling_at", pymongo.DESCENDING)
+    result = collection_picture.find(query).sort("calling_at", pymongo.DESCENDING).skip(skip).limit(page_size)
     for i in result:
         styleid = i["styleid"]
         query = { "_id": ObjectId(styleid) }
