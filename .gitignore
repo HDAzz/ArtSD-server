@@ -2,3 +2,5 @@
 .idea/
 .gitignore
 config.ini
+README.md
+demo.py
