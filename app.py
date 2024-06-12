@@ -1,4 +1,5 @@
 import configparser
+import logging
 import time
 
 from flask import Flask, request, send_from_directory,send_file
@@ -34,20 +35,35 @@ def before():
 def generate_img():
     calling_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) # 获取接口调用的时间
     sn = request.headers.get('Sn') # 获取设备号
+    '''
+    如果请求中带有原图片路径，则直接读取
+    如果请求中不含路径，则读取图片并上传
+    如果两者都有，优先使用原图片路径
+    '''
     img = request.files['img'] # 获取原始图片
-    raw_url = upload_file(img.filename,
-                           img,
-                           type='uploads') # '/upload/xx/xx/xx/xxxx.jpg'
+    raw_img_url=request.form.get('raw_img_url') # 如果是同一个人重复生成，直接读取
     styleid = request.form.get('style')
+    background = True if (request.form.get('background') == 'true' or request.form.get('background') == 'True') else False
+    if raw_img_url: # 如果包含路径或者两者都有，优先选择路径
+        raw_url=raw_img_url
+        logging.warn('图片已存在')
+    elif img:
+        raw_url = upload_file(img.filename,img,type='uploads') # '/upload/xx/xx/xx/xxxx.jpg'
+    else:
+        return error('40000','bad request')
 
-    background = True if (request.form.get('background')=='true' or request.form.get('background')=='True')else False
-    # print(background)
     styleprompt = db.getStylePromp(styleid)
     new_img_data_b,begin_at,end_at = img2img(raw_url,styleprompt,background)
-    processed_url = upload_file(img.filename,
-                                new_img_data_b,
-                                type='productions')# '/productions/xx/xx/xx/xxxx.jpg'
-    data= db.insertPictures(img.filename, raw_url,processed_url, styleid,sn,calling_at,begin_at,end_at)
+    processed_url = upload_file(img.filename,new_img_data_b,type='productions')# '/productions/xx/xx/xx/xxxx.jpg'
+    data= db.insertPictures(img.filename, raw_url,processed_url, styleid,sn,calling_at,begin_at,end_at,background) # 插入一条生成记录
+    # 插入行为记录
+    if db.isFirstGeneration(sn)==0:
+        db.insertBehavior(sn,1,data['id'])
+        db.insertBehavior(sn,2,data['id'])
+    elif db.isFirstGenerationWithStyle(sn,styleid)==0:
+        db.insertBehavior(sn,2,data['id'])
+    else:
+        db.insertBehavior(sn,3,data['id'])
     return success(data)
 @app.route('/sex',methods=['POST'])
 def get_sex():
@@ -81,7 +97,9 @@ def history():
 @app.route('/save',methods=['POST'])
 def saveimg():
     inserted_id = request.form.get('id')
+    sn=request.headers.get('Sn')
     db.savePicture(inserted_id)
+    db.insertBehavior(sn,4,inserted_id)
     return success(None)
 @app.route('/picture',methods=['DELETE'])
 def deletePicture():

@@ -12,10 +12,14 @@ db = pymongo.MongoClient(uri)
 collection_picture=db.get_database().get_collection('picture')
 collection_style=db.get_database().get_collection('style')
 collection_device=db.get_database().get_collection('device')
+collection_behavior=db.get_database().get_collection('behavior')
 '''
 新增图片
 '''
-def insertPictures(filename,raw_url,processed_url,styleid,sn,calling_at,begin_at,end_at):
+def insertPictures(filename,raw_url,processed_url,styleid,sn,calling_at,begin_at,end_at,background):
+    if filename is None:
+        query={'raw_url':raw_url}
+        filename=collection_picture.find_one(query)['filename']
     inserted_id = collection_picture.insert_one({
         "filename":filename,
         "raw_url":raw_url,
@@ -25,9 +29,10 @@ def insertPictures(filename,raw_url,processed_url,styleid,sn,calling_at,begin_at
         "begin_at":begin_at,
         "end_at":end_at,
         "isDeleted":True,
-        "sn":sn
+        "sn":sn,
+        "background":background # 是否删除背景 true为删除 false不删除
     })
-    return {"id":ObjectId(inserted_id.inserted_id).__str__(),"processed_url":processed_url}
+    return {"id":ObjectId(inserted_id.inserted_id).__str__(),"raw_url":raw_url,"processed_url":processed_url}
 '''
 保存图片
 '''
@@ -112,3 +117,32 @@ def checkDevice(sn):
     elif device['isBanned']==True:
         return False
     return True
+
+'''
+插入一条行为记录
+1首次生成 
+2某个风格首次生成 
+3某个风格非首次生成 
+4保存
+'''
+def insertBehavior(sn,btype,gen_id):
+    query = {"_id": ObjectId(gen_id)}
+    styleid = collection_picture.find_one(query)['styleid']
+    inserted_id = collection_behavior.insert_one({
+        "sn":sn,
+        "btype":btype,
+        "happen_at":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+        "gen_id":gen_id,
+        'styleid':styleid
+    })
+
+'''
+判断是否是首次生成
+'''
+def isFirstGeneration(sn):
+    return collection_behavior.count_documents({"sn":sn})
+'''
+判断是否是某个风格的首次生成
+'''
+def isFirstGenerationWithStyle(sn,style):
+    return collection_behavior.count_documents({"sn":sn,"styleid":style})
