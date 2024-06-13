@@ -117,7 +117,10 @@ def checkDevice(sn):
     elif device['isBanned']==True:
         return False
     return True
-
+def getFilename(raw_url):
+    query = {"raw_url":raw_url}
+    result = collection_picture.find_one(query)
+    return result['filename']
 '''
 插入一条行为记录
 1首次生成 

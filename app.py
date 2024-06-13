@@ -42,6 +42,7 @@ def generate_img():
     '''
     if 'img' in request.files:
         img = request.files['img']
+        filename=img.filename
     else:
         img = None
     # img = request.files['img'] # 获取原始图片
@@ -50,16 +51,17 @@ def generate_img():
     background = True if (request.form.get('background') == 'true' or request.form.get('background') == 'True') else False
     if raw_img_url: # 如果包含路径或者两者都有，优先选择路径
         raw_url=raw_img_url
+        filename=db.getFilename(raw_url)
         logging.warn('图片已存在')
     elif img:
-        raw_url = upload_file(img.filename,img,type='uploads') # '/upload/xx/xx/xx/xxxx.jpg'
+        raw_url = upload_file(filename,img,type='uploads') # '/upload/xx/xx/xx/xxxx.jpg'
     else:
         return error('40000','bad request')
 
     styleprompt = db.getStylePromp(styleid)
     new_img_data_b,begin_at,end_at = img2img(raw_url,styleprompt,background)
-    processed_url = upload_file(img.filename,new_img_data_b,type='productions')# '/productions/xx/xx/xx/xxxx.jpg'
-    data= db.insertPictures(img.filename, raw_url,processed_url, styleid,sn,calling_at,begin_at,end_at,background) # 插入一条生成记录
+    processed_url = upload_file(filename,new_img_data_b,type='productions')# '/productions/xx/xx/xx/xxxx.jpg'
+    data= db.insertPictures(filename, raw_url,processed_url, styleid,sn,calling_at,begin_at,end_at,background) # 插入一条生成记录
     # 插入行为记录
     if db.isFirstGeneration(sn)==0:
         db.insertBehavior(sn,1,data['id'])
