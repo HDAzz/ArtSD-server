@@ -40,7 +40,11 @@ def generate_img():
     如果请求中不含路径，则读取图片并上传
     如果两者都有，优先使用原图片路径
     '''
-    img = request.files['img'] # 获取原始图片
+    if 'img' in request.files:
+        img = request.files['img']
+    else:
+        img = None
+    # img = request.files['img'] # 获取原始图片
     raw_img_url=request.form.get('raw_img_url') # 如果是同一个人重复生成，直接读取
     styleid = request.form.get('style')
     background = True if (request.form.get('background') == 'true' or request.form.get('background') == 'True') else False
