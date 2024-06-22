@@ -1,0 +1,58 @@
+[
+  {
+    "_id": {"$oid": "666946a42d682f8252ea1805"},
+    "btype": 1,
+    "gen_id": "666946a42d682f8252ea1804",
+    "happen_at": "2024-06-12 14:56:36",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0bc2af74e609409eac8b"
+  },
+  {
+    "_id": {"$oid": "666946a42d682f8252ea1806"},
+    "btype": 2,
+    "gen_id": "666946a42d682f8252ea1804",
+    "happen_at": "2024-06-12 14:56:36",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0bc2af74e609409eac8b"
+  },
+  {
+    "_id": {"$oid": "666946e92d682f8252ea1808"},
+    "btype": 3,
+    "gen_id": "666946e92d682f8252ea1807",
+    "happen_at": "2024-06-12 14:57:45",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0bc2af74e609409eac8b"
+  },
+  {
+    "_id": {"$oid": "6669473d2d682f8252ea180a"},
+    "btype": 2,
+    "gen_id": "6669473d2d682f8252ea1809",
+    "happen_at": "2024-06-12 14:59:09",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0c01af74e609409eac8c"
+  },
+  {
+    "_id": {"$oid": "6669478b2d682f8252ea180b"},
+    "btype": 4,
+    "gen_id": "6669473d2d682f8252ea1809",
+    "happen_at": "2024-06-12 15:00:27",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0c01af74e609409eac8c"
+  },
+  {
+    "_id": {"$oid": "666ab1c5b9d359a400d43bb6"},
+    "btype": 3,
+    "gen_id": "666ab1c5b9d359a400d43bb5",
+    "happen_at": "2024-06-13 16:45:57",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0c01af74e609409eac8c"
+  },
+  {
+    "_id": {"$oid": "666ab1e6b9d359a400d43bb8"},
+    "btype": 3,
+    "gen_id": "666ab1e6b9d359a400d43bb7",
+    "happen_at": "2024-06-13 16:46:30",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0c01af74e609409eac8c"
+  }
+]

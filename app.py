@@ -8,7 +8,6 @@ from utils.response import success,error
 from db import db
 from service.OssService import upload_file,get_file
 from flask_cors import CORS
-from utils.gender_recognition import gender_recognition
 import re
 
 config = configparser.ConfigParser()

@@ -1,0 +1,68 @@
+[
+  {
+    "_id": {"$oid": "666946a42d682f8252ea1804"},
+    "background": true,
+    "begin_at": "2024-06-12 14:56:03",
+    "calling_at": "2024-06-12 14:56:03",
+    "end_at": "2024-06-12 14:56:26",
+    "filename": "demo.jpg",
+    "isDeleted": true,
+    "processed_url": "/productions/2024/06/12/d22947b18b384913b60d786261cd6760demo.jpg",
+    "raw_url": "/uploads/2024/06/12/fad4557417764db9a56e9d597b9c821ademo.jpg",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0bc2af74e609409eac8b"
+  },
+  {
+    "_id": {"$oid": "666946e92d682f8252ea1807"},
+    "background": true,
+    "begin_at": "2024-06-12 14:57:17",
+    "calling_at": "2024-06-12 14:57:17",
+    "end_at": "2024-06-12 14:57:36",
+    "filename": "demo.jpg",
+    "isDeleted": true,
+    "processed_url": "/productions/2024/06/12/8c5d698ad187440ea779083e0500f538demo.jpg",
+    "raw_url": "/uploads/2024/06/12/fad4557417764db9a56e9d597b9c821ademo.jpg",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0bc2af74e609409eac8b"
+  },
+  {
+    "_id": {"$oid": "6669473d2d682f8252ea1809"},
+    "background": true,
+    "begin_at": "2024-06-12 14:58:27",
+    "calling_at": "2024-06-12 14:58:27",
+    "end_at": "2024-06-12 14:59:00",
+    "filename": "demo.jpg",
+    "isDeleted": false,
+    "processed_url": "/productions/2024/06/12/e5ae7c0508c442508e45439a3c8139f0demo.jpg",
+    "raw_url": "/uploads/2024/06/12/fad4557417764db9a56e9d597b9c821ademo.jpg",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0c01af74e609409eac8c",
+    "updated_at": "2024-06-12 15:00:27"
+  },
+  {
+    "_id": {"$oid": "666ab1c5b9d359a400d43bb5"},
+    "background": true,
+    "begin_at": "2024-06-13 16:45:22",
+    "calling_at": "2024-06-13 16:45:22",
+    "end_at": "2024-06-13 16:45:49",
+    "filename": "demo.jpg",
+    "isDeleted": true,
+    "processed_url": "/productions/2024/06/13/88a5cc88ebc94acb9c58649ac833b26ddemo.jpg",
+    "raw_url": "/uploads/2024/06/12/fad4557417764db9a56e9d597b9c821ademo.jpg",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0c01af74e609409eac8c"
+  },
+  {
+    "_id": {"$oid": "666ab1e6b9d359a400d43bb7"},
+    "background": true,
+    "begin_at": "2024-06-13 16:45:40",
+    "calling_at": "2024-06-13 16:45:40",
+    "end_at": "2024-06-13 16:46:21",
+    "filename": "demo.jpg",
+    "isDeleted": true,
+    "processed_url": "/productions/2024/06/13/823548322fea458c9c4850fa2e0e0fb1demo.jpg",
+    "raw_url": "/uploads/2024/06/12/fad4557417764db9a56e9d597b9c821ademo.jpg",
+    "sn": "af7ed6abbd3341f2b2fd92bd2665987a",
+    "styleid": "663a0c01af74e609409eac8c"
+  }
+]

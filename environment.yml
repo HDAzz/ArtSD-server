@@ -1,0 +1,49 @@
+name: ArtSD-server
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+  - defaults
+dependencies:
+  - ca-certificates=2024.3.11=hca03da5_0
+  - libcxx=14.0.6=h848a8c0_0
+  - libffi=3.4.4=hca03da5_1
+  - ncurses=6.4=h313beb8_0
+  - openssl=3.0.14=h80987f9_0
+  - pip=24.0=py38hca03da5_0
+  - python=3.8.19=hb885b13_0
+  - readline=8.2=h1a28f6b_0
+  - setuptools=69.5.1=py38hca03da5_0
+  - sqlite=3.45.3=h80987f9_0
+  - tk=8.6.14=h6ba3021_0
+  - wheel=0.43.0=py38hca03da5_0
+  - xz=5.4.6=h80987f9_1
+  - zlib=1.2.13=h18a0788_1
+  - pip:
+      - argon2-cffi==23.1.0
+      - argon2-cffi-bindings==21.2.0
+      - blinker==1.8.2
+      - certifi==2024.6.2
+      - cffi==1.16.0
+      - charset-normalizer==3.3.2
+      - click==8.1.7
+      - dnspython==2.6.1
+      - flask==3.0.3
+      - flask-cors==4.0.1
+      - idna==3.7
+      - importlib-metadata==7.2.0
+      - itsdangerous==2.2.0
+      - jinja2==3.1.4
+      - markupsafe==2.1.5
+      - minio==7.2.7
+      - numpy==1.24.4
+      - opencv-python==4.10.0.84
+      - pillow==10.3.0
+      - pycparser==2.22
+      - pycryptodome==3.20.0
+      - pymongo==4.7.3
+      - requests==2.32.3
+      - typing-extensions==4.12.2
+      - urllib3==2.2.2
+      - werkzeug==3.0.3
+      - zipp==3.19.2
+prefix: /opt/anaconda3/envs/ArtSD-server
