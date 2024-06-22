@@ -10,7 +10,7 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui
 
 在项目文件根目录下输入
 
-`./webui.sh --disable-model-loading-ram-optimization --api`
+`./webui.sh --api`
 
 即可启动服务，注意要带上`--api`选项，否则无法调用相关api
 
@@ -36,7 +36,7 @@ https://min.io/download?license=agpl&platform=windows
   - year
     - month
       - Day
-- static(样例图保存路径，分为男女，注意路径要与picture集合中的相关字段保持一致，需要手动添加)
+- static(样例图保存路径，分为男女，**注意路径要与picture集合中的相关字段的值保持一致**，需要手动添加)
   - man
     - xxx.jpg
   - woman
@@ -48,12 +48,14 @@ https://www.mongodb.com/docs/manual/installation/
 
 按照说明根据不同的操作系统进行安装并启动服务
 
+数据库的名称是**ArtSD**
+
 一共有四个集合(在RDBMS中的表)分别为
 
-- picture
-- device
-- style
-- behavior
+- picture（可自动生成）
+- device（设备表，需要手动添加设备，给出设备号）
+- style（风格列表，需要手动插入数据，给出模型的参数，可以通过POST /style接口添加风格,如果风格已存在，仅修改参数，会自动覆盖之前的参数）注意payload字段中的init_images属性要置为空列表
+- behavior（可自动生成）
 
 数据库的数据实例已保存在`./db/xxx.json`文件中，可选择查看
 
